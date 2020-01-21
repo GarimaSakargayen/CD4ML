@@ -1,0 +1,2 @@
+# Ignore secret keys file
+terraform.tfvars
