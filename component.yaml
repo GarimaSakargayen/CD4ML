@@ -11,5 +11,5 @@ implementation:
     command: ['python']
     args: [
       download.py,
-      --tf_data_dir, {inputValue: tf_data_dir},
+      --tf_data_dir, {inputValue: tf_data_dir}
     ]
