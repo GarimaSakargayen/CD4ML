@@ -2,13 +2,12 @@ name: 'Download and preprocess'
 description: |
   Download data and preprocess
 inputs:
-  - name: tf_data_dir
-    description: 'data directory'
+        - {name: tf_data_dir, description: 'Data Directory'}
 implementation:
   container:
           image: docker.io/petehwu/download:latest 
     command: ['python']
     args: [
       download.py,
-      --tf_data_dir, {inputValue:tf_data_dir}
+      --tf_data_dir, {inputValue:tf_data_dir},
     ]
