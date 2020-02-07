@@ -1,6 +1,6 @@
-# CD4ML
+# ML-Watch
 ---
-CD4ML Continuous Deployment for Machine Learning Models using kubeflow.
+Monitoring Kubeflow deployments
 ---
 ![](images/cd4ml_system_architecture.png)
 
