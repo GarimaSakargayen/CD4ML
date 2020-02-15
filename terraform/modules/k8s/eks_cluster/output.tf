@@ -64,27 +64,6 @@ output "aws_eks_version" {
   value = aws_eks_cluster.eks_cluser.version
 }
 
-locals {
-  eks_node_userdata = <<USERDATA
-                        #!/bin/bash
-                        set -o xtrace
-                        /etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.eks_cluser.endpoint}' --b64-cluster-ca '${aws_eks_cluster.eks_cluser.certificate_authority[0].data}' '${var.cluster_name}'
-                        
-                        if [ "${var.cd4ml_env}" == "tools" ]; then
-                          export KS_VER=0.13.1
-                          export KS_PKG=ks_$${KS_VER}_linux_amd64
-                          wget -O /tmp/$${KS_PKG}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v$${KS_VER}/$${KS_PKG}.tar.gz
-                          mkdir -p $${HOME}/bin
-                          tar -xvf /tmp/$KS_PKG.tar.gz -C $${HOME}/bin
-                          export PATH=$PATH:$${HOME}/bin/$KS_PKG 
-                          echo 'export PATH=/usr/local/bin:$PATH' >>~/.profile
-                        fi
-
-                        
-USERDATA
-
-}
-
 output "eks_node_userdata" {
   value      = local.eks_node_userdata
   depends_on = [aws_eks_cluster.eks_cluser]

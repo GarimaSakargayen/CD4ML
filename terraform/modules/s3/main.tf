@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "cd4ml-s3" {
   bucket = "cd4ml-${lower(var.cd4ml_env)}"
-  acl    = "public-read-write"
+  acl    = "private"
   tags = {
     name        = "cd4ml bucket"
     environment = "training"
@@ -24,7 +24,7 @@ POLICY
 
 resource "aws_s3_bucket" "cd4ml-s3-prod" {
   bucket = "cd4ml-prod"
-  acl    = "public-read-write"
+  acl    = "private"
   tags = {
     name        = "cd4ml bucket"
     environment = "training"
@@ -48,7 +48,7 @@ POLICY
 
 resource "aws_s3_bucket" "cd4ml-s3-backup" {
   bucket = "cd4ml-backup"
-  acl    = "public-read-write"
+  acl    = "private"
   tags = {
     name        = "cd4ml bucket"
     environment = "training"
